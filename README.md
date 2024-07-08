@@ -881,3 +881,63 @@ def delete_course(course_id: int, db: Session = Depends(get_db)):
 
 
 ```
+
+__*I use Insomnia to run and test APIs and use JSON body to post information and this is some examples of how to enter information for student, professor and course:*__
+
+
+*student:*
+
+```JSON
+{
+    "sSTID": "40211415029",
+    "sFName": "کاظم",
+    "sLName": "واحدی",
+	"sFather": "نادر",
+	"sIDS": "234578-م-66",
+    "sID": "4061495062",
+    "sBirth": "1380/01/01",
+	"sMarried": "married",
+    "sBornCity": "خرم آباد",
+    "sAddress": "خیابان ارغوان، کوچه بنفشه، پلاک ۱۲",
+    "sPostalCode": "1234567890",
+    "sCPhone": "09123456789",
+    "sHPhone": "02112345678",
+    "sDepartment": "فنی و مهندسی",
+    "sMajor": "مهندسی کامپیوتر",
+    "sSCourseIDs": [76545],
+	"sLIDs": [667114]
+}
+```
+
+*professor:*
+
+```JSON
+{
+	"pPID": "667114" ,
+    "pFName": "علی",
+    "pLName": "احدی",
+    "pID": "4071976500",
+    "pBirth": "1360/01/01",
+    "pBornCity": "تهران",
+    "pAddress": "خیابان فردوسی، کوچه لاله، پلاک ۱۲",
+    "pPostalCode": "1234567890" ,
+    "pCPhone": "09123456789",
+    "pHPhone": "06633431670",
+    "pDepartment": "فنی و مهندسی",
+    "pMajor": "مهندسی کامپیوتر",
+    "pPCourseIDs": [76545] 
+}
+```
+
+
+*course:*
+
+```JSON
+{
+	"cCID": 76545 ,
+	"cCName": "ریاضی" ,
+	"cDepartment": "فنی و مهندسی" ,
+	"cCredit": 3
+}
+```
+
