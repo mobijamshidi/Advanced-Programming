@@ -27,7 +27,7 @@ def update_course(course_id: int, course: CourseEdit, db: Session = Depends(get_
 
 @router.delete("/courses/DelCourse/{course_id}")
 def delete_course(course_id: int, db: Session = Depends(get_db)):
-    result = delete_course_db(db=db, CID=course_id)
+    result = delete_course_db(db=db, course_id=course_id)
     if not result:
         raise HTTPException(status_code=404, detail="Course not found")
     return {"message": "Course deleted successfully"}
