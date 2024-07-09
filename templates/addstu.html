@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<script>
+    function updateMajors() {
+        const d = document.getElementById("d").value;
+        const majorDropdown = document.getElementById("m");
+
+        const majors = {
+            "فنی و مهندسی": ["مهندسی برق", "مهندسی کامپیوتر", "مهندسی عمران", "مهندسی مکانیک"],
+            "علوم پایه": ["ریاضیات", "فیزیک", "شیمی", "زیست‌شناسی"],
+            "دامپزشکی": ["دامپزشکی عمومی", "تخصصی"],
+            "ادبیات و اقتصاد": ["ادبیات فارسی", "علوم اقتصادی", "مدیریت"]
+        };
+
+        // Clear existing options
+        majorDropdown.innerHTML = "<option value='' disabled selected>انتخاب کنید</option>";
+
+        // Populate with options based on selected college
+        if (d && majors[d]) {
+            majors[d].forEach(function(maj) {
+                const option = document.createElement("option");
+                option.value = maj;
+                option.text = maj;
+                majorDropdown.add(option);
+            });
+        }
+    }
+
+    // Call the function when the page loads
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('d').addEventListener('change', updateMajors);
+    });
+
+    function validateForm() {
+        var postal_code = document.getElementById("postalcode").value;
+        var phone_number = document.getElementById("cp").value;
+        var national_id = document.getElementById("nid").value;
+
+        var errorField1 = document.getElementById("error-message1");
+        var errorField2 = document.getElementById("error-message2");
+        var errorField3 = document.getElementById("error-message3");
+        var errorField4 = document.getElementById("error-message4");
+
+        var valid = true;
+
+        // Validation logic for each field
+        // Validate student ID
+        var st = document.getElementsByName("st")[0].value;
+        if (st.length !== 11) {
+            errorField1.innerHTML = "شماره دانشجویی باید دقیقاً 11 رقم باشد.";
+            valid = false;
+        } else {
+            errorField1.innerHTML = "";
+        }
+
+        // Validate postal code
+        if (postal_code.length !== 10) { 
+            errorField2.innerHTML = "کد پستی باید 10 رقم باشد.";
+            valid = false;
+        } else {
+            errorField2.innerHTML = "";
+        }
+
+        // Validate phone number
+        if (phone_number.length !== 11) {
+            errorField3.innerHTML = "شماره تلفن باید 11 رقم باشد.";
+            valid = false;
+        } else {
+            errorField3.innerHTML = "";
+        }
+
+        // Validate national ID
+        if (national_id.length !== 10) {
+            errorField4.innerHTML = "کد ملی باید 10 رقم باشد.";
+            valid = false;
+        } else {
+            errorField4.innerHTML = "";
+        }
+
+        return valid;
+    }
+</script>
+
+<div class="container">
+    <h2 class="mb-4">فرم ثبت دانشجو</h2>
+    <form action="/add" method="post" onsubmit="return validateForm()"> 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="st" class="form-label">شماره دانشجویی:</label>
+                    <input type="text" id="st" name="st" placeholder="شماره دانشجویی" class="form-control" maxlength="11" required autocomplete="off">
+                    <span id="error-message1" style="color: red;"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="fn" class="form-label">نام:</label>
+                    <input type="text" id="fn" name="fn" placeholder="نام" class="form-control" maxlength="10" required autocomplete="off" pattern="[آ-ی ]+">
+                </div> 
+                <div class="mb-3">
+                    <label for="ln" class="form-label">نام خانوادگی:</label>
+                    <input type="text" id="ln" name="ln" placeholder="نام خانوادگی" class="form-control" maxlength="10" required autocomplete="off" pattern="[آ-ی ]+">
+                </div> 
+                <div class="mb-3">
+                    <label for="f" class="form-label">نام پدر:</label>
+                    <input type="text" id="f" name="f" placeholder="نام پدر" class="form-control" maxlength="10" required autocomplete="off" pattern="[آ-ی ]+">
+                </div> 
+                <div class="mb-3">
+                    <label for="birth" class="form-label">تاریخ تولد:</label>
+                    <input type="text" id="birth" name="birth" placeholder="تاریخ تولد" maxlength="10" class="form-control" required autocomplete="off">
+                </div> 
+                <div class="mb-3">
+                    <label for="ids" class="form-label">سریال شناسنامه:</label>
+                    <input type="text" id="ids" name="ids" placeholder="سریال شناسنامه" class="form-control" required autocomplete="off">
+                </div> 
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="borncity" class="form-label">شهر تولد:</label>
+                    <select id="borncity" name="borncity" class="form-control" required autocomplete="off">
+                        <option value="" disabled selected>انتخاب کنید</option>
+                        <option value="آبادان">آبادان</option>
+                        <option value="اراک">اراک</option>
+                        <option value="اصفهان">اصفهان</option>
+                        <!-- Add other cities as options -->
+                    </select>
+                </div> 
+                <div class="mb-3">
+                    <label for="address" class="form-label">آدرس:</label>
+                    <input type="text" id="address" name="address" placeholder="آدرس" class="form-control" required autocomplete="off" maxlength="100" pattern="[آ-ی ]+">
+                </div> 
+                <div class="mb-3">
+                    <label for="postalcode" class="form-label">کد پستی:</label>
+                    <input type="text" id="postalcode" name="postalcode" placeholder="کد پستی" maxlength="10" class="form-control" required autocomplete="off">
+                    <span id="error-message2" style="color: red;"></span>
+                </div> 
+                <div class="mb-3">
+                    <label for="cp" class="form-label">تلفن همراه:</label>
+                    <input type="text" id="cp" name="cp" placeholder="شماره همراه" class="form-control" maxlength="11" required autocomplete="off">
+                    <span id="error-message3" style="color: red;"></span>
+                </div> 
+                <div class="mb-3">
+                    <label for="hp" class="form-label">تلفن ثابت:</label>
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <select id="hp" name="hp" class="form-control" required autocomplete="off">
+                                <option value="" disabled selected>کد</option>
+                                <option value="011">011 - ساری</option>
+                                <!-- Add other options for landline codes -->
+                            </select>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" id="hp_number" name="hp_number" placeholder="شماره" class="form-control" required autocomplete="off" maxlength="8">
+                        </div>
+                    </div>
+                </div> 
+                <div class="mb-3">
+                    <label for="d" class="form-label">دانشکده:</label>
+                    <select id="d" name="d" class="form-control" required autocomplete="off">
+                        <option value="" disabled selected>انتخاب کنید</option>
+                        <option value="فنی و مهندسی">فنی و مهندسی</option>
+                        <option value="علوم پایه">علوم پایه</option>
+                        <option value="دامپزشکی">دامپزشکی</option>
+                        <option value="ادبیات و اقتصاد">ادبیات و اقتصاد</option>
+                    </select>
+                </div> 
+                <div class="mb-3">
+                    <label for="m" class="form-label">رشته:</label>
+                    <select id="m" name="m" class="form-control" required autocomplete="off">
+                        <option value="" disabled selected>انتخاب کنید</option>
+                        <!-- Options for majors will be dynamically added by JavaScript -->
+                    </select>
+                </div> 
+                <div class="mb-3">
+                    <label for="ma" class="form-label">وضعیت تاهل:</label>
+                    <select id="ma" name="ma" class="form-control" required autocomplete="off">
+                        <option value="" disabled selected>انتخاب کنید</option>
+                        <option value="Married">متاهل</option>
+                        <option value="not Married">مجرد</option>
+                    </select>
+                </div> 
+                <div class="mb-3">
+                    <label for="nid" class="form-label">کد ملی:</label>
+                    <input type="text" id="nid" name="nid" placeholder="کد ملی" class="form-control" maxlength="10" required autocomplete="off">
+                    <span id="error-message4" style="color: red;"></span>
+                </div> 
+            </div>
+        </div>
+        <div class="mb-3">
+            <label>دروس:</label>
+            <select id="scid" name="scid" class="form-control" required autocomplete="off">
+                <option value="" disabled selected>لیست دروس</option>
+                {% for course in courses %}
+                    <option value="{{ course.cid }}">{{ course.cid }}, {{ course.cname }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="lids" class="form-label">کد اساتید:</label>
+            <select id="lids" name="lids" class="form-control" required autocomplete="off">
+                <option value="" disabled selected>انتخاب کنید</option>
+                {% for professor in professors %}
+                    <option value="{{ professor.lid }}">{{ professor.pfn }}, {{ professor.pln }} {{ professor.lid }}</option>
+                {% endfor %}
+            </select>
+        </div> 
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">ثبت</button>
+            <a href="/home" class="btn btn-secondary">بازگشت به خانه</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

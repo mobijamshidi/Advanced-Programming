@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/add_course" method="post" onsubmit="return validateForm()" class="mt-5">
+    <div class="mb-3">
+        <label for="cCID" class="form-label">کد درس:</label>
+        <input type="text" id="cCID" name="cCID" placeholder="کد درس" class="form-control" maxlength="5" required autocomplete="off" pattern="[0-9]+" title="فقط عدد مجاز است"/>
+        <span id="error-message-cCID" class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="cCName" class="form-label">نام درس:</label>
+        <input type="text" id="cCName" name="cCName" placeholder="نام درس" class="form-control" maxlength="50" required autocomplete="off" pattern="[آ-ی ]+/?[0-9]*" title="فقط حروف فارسی و فضا مجاز است"/>
+        <span id="error-message-cCName" class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="cDepartment" class="form-label">دانشکده:</label>
+        <select id="cDepartment" name="cDepartment" class="form-select" required>
+            <option value="" disabled selected>انتخاب کنید</option>
+            <option value="فنی و مهندسی">فنی و مهندسی</option>
+            <option value="علوم پایه">علوم پایه</option>
+            <option value="دامپزشکی">دامپزشکی</option>
+            <option value="ادبیات و اقتصاد">ادبیات و اقتصاد</option>
+        </select>
+        <span id="error-message-cDepartment" class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="cCredit" class="form-label">تعداد واحد:</label>
+        <select id="cCredit" name="cCredit" class="form-select" required>
+            <option value="" disabled selected>انتخاب کنید</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <span id="error-message-cCredit" class="form-text text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">ثبت درس</button>  
+    <a href="/home" class="btn btn-secondary">خانه</a>
+</form>
+
+<script>
+    function validateForm() {
+        var cid = document.getElementById("cCID").value.trim();
+        var cname = document.getElementById("cCName").value.trim();
+        var de = document.getElementById("cDepartment").value;
+        var credit = document.getElementById("cCredit").value;
+        var errorCid = document.getElementById("error-message-cCID");
+        var errorCname = document.getElementById("error-message-cCName");
+        var errorDe = document.getElementById("error-message-cDepartment");
+        var errorCredit = document.getElementById("error-message-cCredit");
+        var valid = true;
+
+        // Reset error messages
+        errorCid.innerHTML = "";
+        errorCname.innerHTML = "";
+        errorDe.innerHTML = "";
+        errorCredit.innerHTML = "";
+
+        // Validate کد درس
+        if (!cid.match(/^\d{5}$/)) {
+            errorCid.innerHTML = "کد درس باید 5 رقم عددی باشد.";
+            valid = false;
+        }
+
+        // Validate نام درس
+        if (!cname.match(/^[\u0600-\u06FF\s]+$/)) {
+            errorCname.innerHTML = "نام درس باید فارسی باشد و فقط حروف و فضا مجاز است.";
+            valid = false;
+        }
+
+        // Validate دانشکده
+        if (de === "") {
+            errorDe.innerHTML = "لطفاً دانشکده را انتخاب کنید.";
+            valid = false;
+        }
+
+        // Validate تعداد واحد
+        if (credit === "") {
+            errorCredit.innerHTML = "لطفاً تعداد واحد را انتخاب کنید.";
+            valid = false;
+        }
+
+        return valid;
+    }
+</script>
+{% endblock content %}

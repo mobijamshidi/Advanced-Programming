@@ -1,0 +1,107 @@
+body {
+    font-family: 'Verdana', sans-serif;
+    background-color: #e0f7fa;
+    margin: 0;
+    padding: 0;
+    color: #006064;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+header {
+    background: #478559; /* Green Treeline */
+    color: #ffffff; /* White text color for contrast */
+    padding: 20px 0;
+    border-bottom: 4px solid #f95d9b; /* Pink highlight */
+}
+
+header #branding {
+    display: inline-block;
+}
+
+header #branding h1 {
+    margin: 0;
+}
+
+header nav {
+    float: right;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+header nav ul li a:hover {
+    color: #e0f7fa; /* Lighter blue for hover state */
+}
+
+main {
+    padding: 50px 0;
+    background: linear-gradient(180deg, #161748 0%, #478559 100%); /* Gradient from purple to green */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(22, 23, 72, 0.1);
+    margin: 30px 0;
+    text-align: center; /* Center text in the main section */
+    color: #ffffff; /* White text for better readability */
+}
+
+.welcome-section {
+    margin-bottom: 50px;
+}
+
+.welcome-section h1 {
+    margin-top: 0;
+    font-size: 2.5em;
+}
+
+.welcome-section p {
+    font-size: 1.2em;
+    color: #b3e5fc; /* Light blue for paragraph text */
+}
+
+footer {
+    background: #39a0ca; /* Bluewater lowlight */
+    color: #ffffff; /* White text color for contrast */
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+}
+
+button, input[type="submit"] {
+    display: inline-block;
+    height: 45px;
+    margin: 15px 0;
+    padding: 0 25px;
+    vertical-align: middle;
+    white-space: nowrap;
+    background: #f95d9b; /* Pink button background */
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 45px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+button:hover, input[type="submit"]:hover {
+    background: #000000;
+}

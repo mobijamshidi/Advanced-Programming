@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <a href="/addstu" class="btn btn-primary">افزودن دانشجو جدید</a>
+        <br><br>
+        <a href="/" class="btn btn-primary">خانه</a>
+        <br><br>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>شناسه</th>
+                    <th>شماره دانشجویی</th>
+                    <th>نام</th>
+                    <th>نام خانوادگی</th>
+                    <th>نام پدر</th>
+                    <th>تاریخ تولد</th>
+                    <th>شماره شناسنامه</th>
+                    <th>شهر تولد</th>
+                    <th>آدرس</th>
+                    <th>کد پستی</th>
+                    <th>تلفن همراه</th>
+                    <th>تلفن ثابت</th>
+                    <th>دانشکده</th>
+                    <th>رشته</th>
+                    <th>وضعیت تاهل</th>
+                    <th>کد ملی</th>
+                    <th>دروس</th>
+                    <th>کد اساتید</th>
+                    <th width="200">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in students %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.st }}</td>
+                        <td>{{ user.fn }}</td>
+                        <td>{{ user.ln }}</td>
+                        <td>{{ user.f }}</td>
+                        <td>{{ user.birth }}</td>
+                        <td>{{ user.ids }}</td>
+                        <td>{{ user.borncity }}</td>
+                        <td>{{ user.address }}</td>
+                        <td>{{ user.postalcode }}</td>
+                        <td>{{ user.cp }}</td>
+                        <td>{{ user.hp }}</td>
+                        <td>{{ user.d }}</td>
+                        <td>{{ user.m }}</td>
+                        <td>{{ user.ma }}</td>
+                        <td>{{ user.nid }}</td>
+                        <td>{{ user.scid }}</td>
+                        <td>{{ user.lids }}</td>
+                        <td>
+                            <a href="edit_student/{{ user.id }}" class="btn btn-success">ویرایش</a> 
+                            <a href="delete_student/{{ user.id }}" class="btn btn-danger">حذف</a>  
+                        </td>
+                    </tr>
+                {% endfor %}    
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <br><br>
+        <a href="/addcourse" class="btn btn-primary">افزودن درس جدید</a>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>شناسه</th>
+                    <th>کد درس</th>
+                    <th>نام درس</th>
+                    <th>دانشکده</th>
+                    <th>تعداد واحد</th>
+                    <th width="200">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                    <tr>
+                        <td>{{ course.id }}</td>
+                        <td>{{ course.cCID }}</td>
+                        <td>{{ course.cCName }}</td>
+                        <td>{{ course.cDepartment }}</td>
+                        <td>{{ course.cCredit }}</td>
+                        <td>
+                            <a href="/edit_course/{{ course.id }}" class="btn btn-success">ویرایش</a>
+                            <a href="/delete_course/{{ course.id }}" class="btn btn-danger">حذف</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-primary">خانه</a>
+    </div>
+</div>
+{% endblock content %}

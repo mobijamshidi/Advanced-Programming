@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <a href="/addprofessor" class="btn btn-primary">افزودن استاد جدید</a>
+        <br><br>
+        <a href="/" class="btn btn-primary">خانه</a>
+        <br><br>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>شناسه</th>
+                    <th>کد اساتید</th>
+                    <th>نام</th>
+                    <th>نام خانوادگی</th>
+                    <th>تاریخ تولد</th>
+                    <th>شهر تولد</th>
+                    <th>آدرس</th>
+                    <th>کد پستی</th>
+                    <th>تلفن همراه</th>
+                    <th>تلفن ثابت</th>
+                    <th>دانشکده</th>
+                    <th>رشته</th>
+                    <th>کد ملی</th>
+                    <th>کد درس</th>
+                    <th width="200">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in professors %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.lid }}</td>
+                        <td>{{ user.pfn }}</td>
+                        <td>{{ user.pln }}</td>
+                        <td>{{ user.pbirth }}</td>
+                        <td>{{ user.pborncity }}</td>
+                        <td>{{ user.paddress }}</td>
+                        <td>{{ user.ppostalcode }}</td>
+                        <td>{{ user.pcp }}</td>
+                        <td>{{ user.php_number }}</td>
+                        <td>{{ user.php }}</td>
+                        <td>{{ user.pd }}</td>
+                        <td>{{ user.pm }}</td>
+                        <td>{{ user.pnid }}</td>
+                        <td>{{ user.pscid }}</td>
+                        <td>
+                            <a href="edit_professor/{{ user.id }}" class="btn btn-success">ویرایش</a> 
+                            <a href="delete_professor/{{ user.id }}" class="btn btn-danger">حذف</a>  
+                        </td>
+                    </tr>
+                {% endfor %}    
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

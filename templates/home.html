@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدیریت دانشگاه</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- تعیین مسیر به style.css به نیازها -->
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            color: #006064;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: #478559; /* رنگ سبز برگ درخت */
+            color: #ffffff; /* رنگ متن سفید برای تباهی بیشتر */
+            padding: 20px 0;
+            border-bottom: 4px solid #f95d9b; /* برجسته صورتی */
+        }
+
+        header #branding {
+            display: inline-block;
+        }
+
+        header #branding h1 {
+            margin: 0;
+        }
+
+        header nav {
+            float: right;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        header nav ul li a:hover {
+            color: #e0f7fa; /* رنگ آبی روشن برای وضعیت هاور */
+        }
+
+        main {
+            padding: 50px 0;
+            background: linear-gradient(180deg, #161748 0%, #478559 100%); /* گرادیان از بنفش تا سبز */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(22, 23, 72, 0.1);
+            margin: 30px 0;
+            text-align: center; /* متن مرکز در بخش اصلی */
+            color: #ffffff; /* رنگ متن سفید برای خوانایی بهتر */
+        }
+
+        .welcome-section {
+            margin-bottom: 50px;
+        }
+
+        .welcome-section h1 {
+            margin-top: 0;
+            font-size: 2.5em;
+        }
+
+        .welcome-section p {
+            font-size: 1.2em;
+            color: #b3e5fc; /* رنگ آبی روشن برای متن پاراگراف */
+        }
+
+        footer {
+            background: #39a0ca; /* آبی آب کم */
+            color: #ffffff; /* رنگ متن سفید برای تباهی بیشتر */
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+
+        button, input[type="submit"] {
+            display: inline-block;
+            height: 45px;
+            margin: 15px 0;
+            padding: 0 25px;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #f95d9b; /* پس زمینه دکمه صورتی */
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 45px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background: #000000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>مدیریت دانشگاه</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">خانه</a></li>
+                    <li><a href="/addstu">افزودن دانشجویان</a></li>
+                    <li><a href="/addprofessor">افزودن اساتید</a></li>
+                    <li><a href="/addcourse">افزودن دروس</a></li>
+                    <li><a href="/showstu">اطلاعات دانشجویان</a></li>
+                    <li><a href="/showprofessor">اطلاعات اساتید</a></li>
+                    <li><a href="/showcourse">اطلاعات دروس</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="welcome-section">
+            <h1>به سیستم مدیریت دانشگاه خوش آمدید</h1>
+            <p>مدیریت کارآمد دانشجویان، اساتید و دروس.</p>
+        </div>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <p>پروژه دانشگاه لرستان</p>
+    </footer>
+</body>
+</html>
